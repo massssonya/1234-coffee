@@ -1,3 +1,4 @@
+import { useRef, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 
@@ -13,15 +14,24 @@ export function Navigation({
 	activeSection: string;
 	setActiveSection: (s: string) => void;
 }) {
+	const ulRef = useRef<HTMLUListElement>(null);
+
+	useLayoutEffect(() => {
+		const li = document.getElementById(`li_${activeSection}`);
+		ulRef.current.scrollTo({
+			behavior: "smooth",
+			left: li?.offsetLeft ?? 0
+		});
+	}, [activeSection]);
 
 	return (
-		<ul className="navigation-list">
+		<ul ref={ulRef} className="navigation-list">
 			{items.map((item) => {
 				return (
 					<motion.li
 						key={item.id}
 						id={`li_${item.id}`}
-						className={`navigation-list__item`}
+						className="navigation-list__item"
 					>
 						<Link
 							to={item.id}

@@ -1,10 +1,9 @@
-import Card from "./Card";
 import { motion } from "framer-motion";
 
-export function SectionItem({
-	data,
-}) {
+import Card from "./Card";
+import { ISection } from "../interfaces";
 
+export function SectionItem({ data }: { data: ISection }) {
 	return (
 		<section className="section" id={data.id}>
 			<motion.div className="section-item">

@@ -1,4 +1,4 @@
-import {useMemo, useState } from "react";
+import { useState } from "react";
 
 import { Navigation } from "./Navigation";
 import { SectionItem } from "./SectionItem";
@@ -7,16 +7,9 @@ import { data } from "../data";
 const Section = () => {
 	const [activeSection, setActiveSection] = useState("");
 
-	const sections = useMemo(
-		() =>
-			data.map((item) => (
-				<SectionItem
-					key={item.id}
-					data={item}
-				/>
-			)),
-		[]
-	);
+	const sections = data.map((item) => (
+		<SectionItem key={item.id} data={item} />
+	));
 
 	return (
 		<>

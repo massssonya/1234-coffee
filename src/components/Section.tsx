@@ -1,4 +1,4 @@
-import { useState, useEffect, createRef, useMemo } from "react";
+import {useMemo, useState } from "react";
 
 import { Navigation } from "./Navigation";
 import { SectionItem } from "./SectionItem";
@@ -6,42 +6,16 @@ import { data } from "../data";
 
 const Section = () => {
 	const [activeSection, setActiveSection] = useState("");
-	const [pageHeight, setPageHeight] = useState();
-
-	useEffect(() => {
-		setPageHeight(window.innerHeight);
-		window.addEventListener("resize", (e) => {
-			setTimeout(() => {
-				setPageHeight(window.innerHeight);
-			}, 300);
-		});
-	}, []);
-
-	const refs = data.reduce((refsObj, section) => {
-		refsObj[section.id] = createRef();
-		return refsObj;
-	}, {});
-
-	const handleCLick = (id) => {
-		refs[id].current.scrollIntoView({
-			behavior: "smooth",
-			block: "start"
-		});
-	};
 
 	const sections = useMemo(
 		() =>
 			data.map((item) => (
 				<SectionItem
 					key={item.id}
-					activeSection={activeSection}
 					data={item}
-					setActiveSection={setActiveSection}
-					pageHeight={pageHeight}
-					refs={refs}
 				/>
 			)),
-		[activeSection, pageHeight, refs]
+		[]
 	);
 
 	return (
@@ -51,7 +25,7 @@ const Section = () => {
 					<Navigation
 						items={data}
 						activeSection={activeSection}
-						handleCLick={handleCLick}
+						setActiveSection={setActiveSection}
 					/>
 				</nav>
 				<div className="section">{sections}</div>

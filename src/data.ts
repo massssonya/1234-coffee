@@ -1,15 +1,13 @@
 import { ISection } from "./interfaces";
 
 export const data: ISection[] = [
-	{ id: 1, title: "СЕЗОННЫЕ НАПИТКИ", items: [
-
-	] },
-	{ id: 2, title: "ЗАВТРАКИ", items: [] },
-	{ id: 3, title: "СТАРТЕРЫ", items: [] },
-	{ id: 4, title: "СУПЫ", items: [] },
-	{ id: 5, title: "ГОРЯЧЕЕ", items: [] },
-	{ id: 6, title: "СЭНДВИЧИ", items: [] },
-	{ id: 7, title: "КОФЕ", items: [] },
-	{ id: 8, title: "НЕ КОФЕ", items: [] },
-	{ id: 9, title: "ЧАИ", items: [] },
-  ];
+	{ id: "season_id", title: "СЕЗОННЫЕ НАПИТКИ", items: [] },
+	{ id: "breakfast_id", title: "ЗАВТРАКИ", items: [] },
+	{ id: "starters_id", title: "СТАРТЕРЫ", items: [] },
+	{ id: "suppers_id", title: "СУПЫ", items: [] },
+	{ id: "hot_id", title: "ГОРЯЧЕЕ", items: [] },
+	{ id: "cold_id", title: "СЭНДВИЧИ", items: [] },
+	{ id: "coffee_id", title: "КОФЕ", items: [] },
+	{ id: "non-coffee_id", title: "НЕ КОФЕ", items: [] },
+	{ id: "tea_id", title: "ЧАИ", items: [] }
+];

@@ -1,5 +1,5 @@
 export interface ISection {
-	id: number;
+	id: string;
 	title: string;
 	items?: ISectionItem[];
 }

@@ -41,12 +41,12 @@ const Section = () => {
 					refs={refs}
 				/>
 			)),
-		[activeSection, pageHeight, refs],
+		[activeSection, pageHeight, refs]
 	);
 
 	return (
 		<>
-			<div className="page-wrapper">
+			<div className="page-wrapper mx-auto">
 				<nav className="navigation">
 					<Navigation
 						items={data}

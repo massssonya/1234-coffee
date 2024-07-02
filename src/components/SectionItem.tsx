@@ -33,7 +33,7 @@ export function SectionItem({
 	}, [activeSection, setActiveSection, observerMargin, refs, data, pageHeight]);
 
 	return (
-		<section className="">
+		<section className="section">
 			<motion.div className="section-item">
 				<h2 ref={refs[data.id]} id={data.id} className="section-item__title">
 					{data.title}

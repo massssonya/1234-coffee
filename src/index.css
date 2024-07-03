@@ -42,11 +42,9 @@ body {
 		@apply cursor-pointer select-none text-nowrap snap-start;
 	}
 
-	/*  Select Line */
-
 	/*  Section */
 	.section {
-		@apply sm:mx-auto mx-2 max-w-[calc(100%-16px)] px-1;
+		@apply sm:mx-2 mx-3 max-w-full;
 	}
 
 	/*  Section Item */
@@ -57,23 +55,71 @@ body {
 		@apply sm:text-3xl text-2xl font-extrabold text-nowrap pt-16;
 	}
 	.section-item__hr {
-		@apply w-[calc(100%)] h-1 my-4 bg-black border-0 rounded dark:bg-gray-700;
+		@apply w-full h-1 my-4 bg-black rounded dark:bg-gray-700;
 	}
 
-	/*  Cards */
+	/*  Cards  */
 	.cards-container {
-		@apply flex flex-wrap;
+		@apply grid md:grid-cols-2 gap-3;
 	}
 	.card {
-		@apply relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-96;
+		@apply bg-white rounded-lg select-none shadow-md hover:shadow-md;
 	}
 	.card-disabled {
-		@apply opacity-50 cursor-not-allowed;
+		@apply opacity-50 cursor-not-allowed pointer-events-none;
 	}
 	.card-img {
-		@apply relative h-56 mx-4 -mt-6 overflow-hidden text-white shadow-lg bg-clip-border rounded-xl;
+		@apply w-full;
+	}
+	.card-container {
+		@apply sm:px-4 px-2 py-4 border-x border-b border-teal-700 rounded-b-lg select-none;
+	}
+
+	.card-info {
+		@apply flex flex-col px-2;
 	}
 	.card-title {
-		@apply block mb-2 font-sans text-xl antialiased font-semibold leading-snug tracking-normal;
+		@apply mb-2 sm:text-2xl text-[clamp(1rem,3vw,1.5rem)] font-bold tracking-tight text-teal-700 dark:text-white;
+	}
+	.card-table {
+		@apply w-full my-3 flex justify-center;
+	}
+
+	.card-description {
+		@apply mb-2 max-h-20 overflow-y-auto no-scrollbar;
+	}
+
+	.card-footer {
+		@apply flex justify-between items-center;
+	}
+	.card-price {
+		@apply text-xl font-bold dark:text-white;
+	}
+	.card-like {
+		@apply w-12 flex justify-center;
+	}
+	.card-like__btn {
+		@apply w-10 h-10 flex justify-center items-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-800;
+	}
+
+	/*  Table  */
+	.table {
+		@apply text-[clamp(0.6rem,3vw,1rem)] text-center text-gray-500 dark:text-gray-400 w-full;
+	}
+
+	.table-thead {
+		@apply text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400;
+	}
+
+	.table-th {
+		@apply px-3 border-r border-teal-700 last:border-none;
+	}
+
+	.table-tr {
+		@apply bg-white dark:bg-gray-800 dark:border-gray-700;
+	}
+
+	.table-td {
+		@apply px-3 border-r border-teal-700 last:border-none;
 	}
 }

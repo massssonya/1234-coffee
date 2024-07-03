@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
-import Card from "./Card";
-import { ISection } from "../interfaces";
+import Card from "../cards/Card";
+import { ISection } from "../../interfaces";
 
 export function SectionItem({ data }: { data: ISection }) {
 	return (
@@ -12,10 +12,9 @@ export function SectionItem({ data }: { data: ISection }) {
 				</h2>
 				<hr className="section-item__hr" />
 				<div className="cards-container">
-					<Card />
-					<Card />
-					<Card />
-					<Card />
+					{data.items?.map((item) => (
+						<Card key={item.id} data={item} />
+					))}
 				</div>
 			</motion.div>
 		</section>

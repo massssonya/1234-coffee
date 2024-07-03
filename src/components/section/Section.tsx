@@ -1,11 +1,13 @@
 import { useState } from "react";
 
-import { Navigation } from "./Navigation";
+import { Navigation } from "../navigation/Navigation";
 import { SectionItem } from "./SectionItem";
-import { data } from "../data";
+import { GetData } from "../../data";
 
 const Section = () => {
 	const [activeSection, setActiveSection] = useState("");
+
+	const data = GetData();
 
 	const sections = data.map((item) => (
 		<SectionItem key={item.id} data={item} />
@@ -21,7 +23,7 @@ const Section = () => {
 						setActiveSection={setActiveSection}
 					/>
 				</nav>
-				<div className="section">{sections}</div>
+				<main>{sections}</main>
 			</div>
 		</>
 	);

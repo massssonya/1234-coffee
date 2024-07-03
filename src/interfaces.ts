@@ -5,7 +5,7 @@ export interface ISection {
 }
 
 export interface ISectionItem {
-	id: number | string;
+	id: string;
 	name: string;
 	price: number;
 	img?: string;
@@ -15,7 +15,8 @@ export interface ISectionItem {
 }
 
 export interface IProperties {
-	proteins: number | string;
-	fats: number | string;
-	carbohydrates: number | string;
+	proteins?: number | string;
+	fats?: number | string;
+	carbohydrates?: number | string;
+	calories?: number | string;
 }

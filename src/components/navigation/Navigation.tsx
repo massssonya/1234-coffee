@@ -2,7 +2,6 @@ import { useRef, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 
-import { ISection } from "../../interfaces";
 import SelectLine from "./SelectLine";
 
 export function Navigation({
@@ -10,7 +9,8 @@ export function Navigation({
 	activeSection,
 	setActiveSection
 }: {
-	items: ISection[];
+	// items: ISection[];
+	items: { id: string; title: string }[];
 	activeSection: string;
 	setActiveSection: (s: string) => void;
 }) {

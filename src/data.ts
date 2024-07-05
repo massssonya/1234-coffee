@@ -1,5 +1,21 @@
 import { useState, useEffect } from "react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { ISection } from "./interfaces";
+
+// Define a service using a base URL and expected endpoints
+export const foodApi = createApi({
+  reducerPath: 'foodApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
+  endpoints: (builder) => ({
+    getFood: builder.query<ISection, string>({
+      query: () => `food`,
+    }),
+  }),
+})
+
+// Export hooks for usage in functional components, which are
+// auto-generated based on the defined endpoints
+export const { useGetFoodQuery } = foodApi
 
 // export const data: ISection[] = [
 // 	{
@@ -34,23 +50,23 @@ import { ISection } from "./interfaces";
 
 // const initialData: ISection[] = [];
 
-export const GetData = () => {
-	const [data, setData] = useState([] as ISection[]);
+// export const GetData = () => {
+// 	const [data, setData] = useState([] as ISection[]);
 
-	const getApiData = async () => {
-		const response = await fetch("http://localhost:3001/food").then(
-			(response) => response.json()
-		);
+// 	const getApiData = async () => {
+// 		const response = await fetch("http://localhost:3001/food").then(
+// 			(response) => response.json()
+// 		);
 
-		// Обновим состояние
-		setData(response);
-	};
+// 		// Обновим состояние
+// 		setData(response);
+// 	};
 
-	useEffect(() => {
-		getApiData();
-	}, []);
+// 	useEffect(() => {
+// 		getApiData();
+// 	}, []);
 
 
 
-	return data;
-};
+// 	return data;
+// };

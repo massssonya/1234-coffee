@@ -1,18 +1,13 @@
-import { useState } from "react";
+import { FC, useState } from "react";
+
 import { Navigation } from "../navigation/Navigation";
 import { SectionItem } from "./SectionItem";
 import { useGetFoodsQuery } from "../../store/food/food.api";
 import { ISection } from "../../interfaces";
-// import { GetData } from "../../data";
 
-const Section = () => {
+const Section: FC= () => {
 	const [activeSection, setActiveSection] = useState("");
-
-	// const data = GetData();
-
-	const { data, isSuccess } = useGetFoodsQuery();
-
-	if (!isSuccess) return <div>Loading...</div>;
+	const { data, isLoading, error, isSuccess, isError } = useGetFoodsQuery();
 
 	const sectionNavigation = (
 		items: ISection[]
@@ -22,25 +17,28 @@ const Section = () => {
 			title: item.title
 		}));
 
-		return sections || [];
+		return sections;
 	};
-	const sections = data?.map((item) => (
-		<SectionItem key={item.id} data={item} />
-	));
 
 	return (
-		<>
-			<div className="page-wrapper mx-auto">
-				<nav className="navigation">
-					<Navigation
-						items={isSuccess ? sectionNavigation(data) : []}
-						activeSection={activeSection}
-						setActiveSection={setActiveSection}
-					/>
-				</nav>
-				<main>{sections}</main>
-			</div>
-		</>
+		<div className="page-wrapper mx-auto">
+			<Navigation
+				items={isSuccess ? sectionNavigation(data) : []}
+				activeSection={activeSection}
+				setActiveSection={setActiveSection}
+			/>
+
+			<main>
+				{isLoading ? (
+					"Loading..."
+				) : isError ? (
+					<div className="text-red-500">{error}</div>
+				) : (
+					data?.map((item) => <SectionItem key={item.id} item={item} />)
+				)}
+				{/* {favorite.length > 0 && <SectionItem id="favorite" title="Favorite" items={favorite} />} */}
+			</main>
+		</div>
 	);
 };
 

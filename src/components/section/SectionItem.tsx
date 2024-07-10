@@ -1,22 +1,23 @@
 import { motion } from "framer-motion";
 
-import Card from "../cards/Card";
+import { Card } from "../cards/Card";
 import { ISection } from "../../interfaces";
 
-export function SectionItem({ data }: { data: ISection }) {
+export const SectionItem = ({ item }: { item: ISection }) => {
+	const { title, items, id } = item;
 	return (
-		<section className="section" id={data.id}>
+		<section className="section" id={id}>
 			<motion.div className="section-item">
-				<h2 id={data.id} className="section-item__title">
-					{data.title}
+				<h2 id={id} className="section-item__title">
+					{title}
 				</h2>
 				<hr className="section-item__hr" />
 				<div className="cards-container">
-					{data.items?.map((item) => (
+					{items?.map((item) => (
 						<Card key={item.id} data={item} />
 					))}
 				</div>
 			</motion.div>
 		</section>
 	);
-}
+};

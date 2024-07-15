@@ -4,8 +4,10 @@ import { Navigation } from "../navigation/Navigation";
 import { SectionItem } from "./SectionItem";
 import { useGetFoodsQuery } from "../../store/food/food.api";
 import { ISection } from "../../interfaces";
+import { SectionItemPlaceholder } from "../ui/skeleton/SectionItemPlaceholder";
+import { NavigationPlaceholder } from "../ui/skeleton/NavigationPlaceholder";
 
-const Section: FC= () => {
+const Section: FC = () => {
 	const [activeSection, setActiveSection] = useState("");
 	const { data, isLoading, error, isSuccess, isError } = useGetFoodsQuery();
 
@@ -21,24 +23,31 @@ const Section: FC= () => {
 	};
 
 	return (
-		<div className="page-wrapper mx-auto">
-			<Navigation
-				items={isSuccess ? sectionNavigation(data) : []}
-				activeSection={activeSection}
-				setActiveSection={setActiveSection}
-			/>
-
-			<main>
+		<>
+			<div className="page-wrapper mx-auto">
 				{isLoading ? (
-					"Loading..."
-				) : isError ? (
-					<div className="text-red-500">{error}</div>
+					<NavigationPlaceholder />
 				) : (
-					data?.map((item) => <SectionItem key={item.id} item={item} />)
+					<Navigation
+						items={isSuccess ? sectionNavigation(data) : []}
+						activeSection={activeSection}
+						setActiveSection={setActiveSection}
+					/>
 				)}
-				{/* {favorite.length > 0 && <SectionItem id="favorite" title="Favorite" items={favorite} />} */}
-			</main>
-		</div>
+
+				<main>
+					{isLoading ? (
+						<SectionItemPlaceholder />
+					) : isError ? (
+						<div className="text-red-500">{error}</div>
+					) : (
+						data?.map((item) => <SectionItem key={item.id} item={item} />)
+					)}
+					{/* {favorite.length > 0 && <SectionItem id="favorite" title="Favorite" items={favorite} />} */}
+				</main>
+
+			</div>
+		</>
 	);
 };
 

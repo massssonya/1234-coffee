@@ -15,6 +15,7 @@ export const SectionItem = ({ item }: { item: ISection }) => {
 				<div className="cards-container">
 					{items?.map((item) => (
 						<Card key={item.id} data={item} />
+						// <CardPlaceholder key={item.id} />
 					))}
 				</div>
 			</motion.div>

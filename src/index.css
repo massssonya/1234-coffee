@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		@apply max-w-[1024px] mx-auto bg-primary dark:bg-dark-primary;
+		@apply max-w-[1024px] mx-auto bg-primary dark:bg-blue-800;
 	}
 }
 
@@ -53,7 +53,7 @@
 		@apply flex-1;
 	}
 	.section-item__title {
-		@apply sm:text-3xl text-2xl font-extrabold text-nowrap pt-16;
+		@apply sm:text-3xl text-2xl font-extrabold text-nowrap pt-16 dark:text-white;
 	}
 	.section-item__hr {
 		@apply w-full h-1 my-4 bg-black rounded dark:bg-gray-700;
@@ -64,7 +64,7 @@
 		@apply grid md:grid-cols-2 gap-3;
 	}
 	.card {
-		@apply relative bg-white rounded-lg select-none shadow-md hover:shadow-md;
+		@apply relative bg-white rounded-lg select-none dark:bg-blue-800;
 	}
 	.card-disabled {
 		@apply opacity-50 cursor-not-allowed pointer-events-none;
@@ -72,6 +72,9 @@
 	.card-not-available {
 		@apply absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1.5rem,3vw,2rem)] font-bold text-nowrap;
 	}
+	/* .card-open {
+		@apply row-start-1 row-end-2 col-start-1 col-end-3;
+	} */
 	.card-img {
 		@apply w-full;
 	}
@@ -125,5 +128,68 @@
 
 	.table-td {
 		@apply px-3 border-r border-teal-700 last:border-none;
+	}
+
+	/*  Alerting Service  */
+
+	.alerting-service {
+		@apply fixed bottom-[clamp(1.5rem,3vw,2rem)] z-50 flex flex-col gap-2;
+
+		&.top {
+			@apply top-5;
+		}
+
+		&.bottom {
+			@apply bottom-5;
+		}
+
+		&.left {
+			@apply left-5;
+		}
+
+		&.right {
+			@apply right-5;
+		}
+	}
+
+	/*  Alert  */
+	.alert {
+		@apply inline-flex items-center justify-between px-2 py-1 me-2 font-medium rounded text-[clamp(0.7rem,3vw,1rem)];
+
+		&.success {
+			@apply bg-success text-success-light;
+		}
+
+		&.error {
+			@apply bg-error text-error-light;
+		}
+
+		&.warning {
+			@apply bg-warning text-warning-light;
+		}
+
+		&.info {
+			@apply bg-info text-info-light;
+		}
+	}
+
+	.alert-button {
+		@apply inline-flex items-center p-1 ms-2 text-sm rounded-sm text-green-400 bg-transparent hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300;
+
+		&.error {
+			@apply text-error-light hover:bg-error-light hover:text-error dark:text-error dark:hover:bg-error dark:hover:text-error-light;
+		}
+
+		&.warning {
+			@apply text-warning-light hover:bg-warning-light hover:text-warning dark:text-warning dark:hover:bg-warning dark:hover:text-warning-light;
+		}
+
+		&.info {
+			@apply text-info-light hover:bg-info-light hover:text-info dark:text-info dark:hover:bg-info dark:hover:text-info-light;
+		}
+
+		&.success {
+			@apply text-success-light hover:bg-success-light hover:text-success dark:text-success dark:hover:bg-success dark:hover:text-success-light;
+		}
 	}
 }

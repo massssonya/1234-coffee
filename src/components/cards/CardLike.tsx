@@ -11,12 +11,12 @@ export const CardLike = ({
 		<motion.span
 			whileTap={{ scale: 0.9 }}
 			whileHover={{ scale: 1.1 }}
-			className="w-10 flex justify-center"
+			className="absolute top-2 right-2 w-10 flex justify-center"
 		>
 			<svg
 				onClick={(e) => handleClick(e)}
-				className="text-red-500 cursor-pointer"
-				fill={isLike ? "rgb(239 68 68)" : "none"}
+				className="text-white cursor-pointer"
+				fill={isLike ? "rgb(255 255 255)" : "none"}
 				viewBox="0 0 24 24"
 				stroke="currentColor"
 			>

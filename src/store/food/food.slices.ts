@@ -7,13 +7,11 @@ const favoriteSlice = createSlice({
 	name: "favorite",
 	initialState,
 	reducers: {
-		toggleFavorite: (state, action: PayloadAction<ISectionItem>) => {
-			const isExist = state.some((item) => item.id === action.payload.id);
-			if (isExist) {
-				return state.filter((item) => item.id !== action.payload.id);
-			} else {
-				state.push(action.payload);
-			}
+		addFavorite: (state, action: PayloadAction<ISectionItem>) => {
+			state.push(action.payload);
+		},
+		removeFavorite: (state, action: PayloadAction<ISectionItem>) => {
+			return state.filter((item) => item.id !== action.payload.id);
 		}
 	}
 });

@@ -4,10 +4,13 @@ import { sortItems } from "../../utils";
 
 export const foodApi = createApi({
 	reducerPath: "api/food",
-	baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
+	baseQuery: fetchBaseQuery({
+		baseUrl: "http://localhost:3001/"
+	}),
 	endpoints: (build) => ({
 		getFoods: build.query<ISection[], void>({
-			query: () => `food`,
+			query: () => ({ url: `food` }),
+
 			transformResponse(res: ISection[]) {
 				return res.map((item) => {
 					const sortedItems = item.items

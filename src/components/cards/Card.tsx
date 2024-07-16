@@ -8,6 +8,7 @@ import { ISectionItem } from "@/interfaces";
 import { useActions } from "@hooks/useActions";
 import { info, warning } from "../alerting_service/services/alerting_service";
 import defaultImg from "@assets/default.webp";
+import { Badge } from "../ui/badge/Badge";
 
 export const Card = ({
 	data,
@@ -31,15 +32,15 @@ export const Card = ({
 		}
 		setIsLike((prev) => !prev);
 	};
-	const handleOpen = (e) => {
+	const handleOpen = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.stopPropagation();
 		setIsOpen((prev) => !prev);
 	};
 	return (
 		<motion.div
-			initial={{ y: 100, opacity: 0.5 }}
+			initial={{ y: 50, opacity: 0 }}
 			viewport={{ once: true }}
-			whileInView={{ y: 0, opacity: 1 }}
+			whileInView={{ y: 0, opacity: data.isDisabled ? 0.5 : 1 }}
 			transition={{ duration: 1, ease: "easeInOut" }}
 			className={
 				`card` +
@@ -65,8 +66,14 @@ export const Card = ({
 			<CardLike isLike={isLike} handleClick={handleLike} />
 			<div className="card-container">
 				<div className="card-info">
-					<h3 className="card-title">{data.name}</h3>
-
+					<div className="card-header">
+						<h3 className="card-title">{data.name}</h3>
+						{data.isDisabled ? (
+							<Badge color="error">Нет в наличии</Badge>
+						) : (
+							<Badge color="success">Есть в наличии</Badge>
+						)}
+					</div>
 					{/* Table */}
 					<div className="card-table">
 						{data.properties && (

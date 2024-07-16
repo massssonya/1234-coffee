@@ -1,16 +1,23 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { Button } from "../Button";
 import { IAlertProps } from "./alert.props";
-import { close } from "../../alerting_service/services/alerting_service";
-import { useEffect } from "react";
+import { close } from "@components/alerting_service/services/alerting_service";
+
 export const Alert = (props: IAlertProps): JSX.Element => {
+	const [isHovered, setIsHovered] = useState(false);
+
 	useEffect(() => {
+		if (isHovered) return;
 		if (props.timeout > 0) {
 			const timer = setTimeout(() => {
 				close(props.id);
 			}, props.timeout * 1_000);
 			return () => clearTimeout(timer);
 		}
-	}, [props.timeout, props.id]);
+	}, [props.timeout, props.id, isHovered]);
+
 	return (
 		<motion.span
 			className={`alert ${props.status}`}
@@ -19,10 +26,11 @@ export const Alert = (props: IAlertProps): JSX.Element => {
 			animate={{ opacity: 1, y: 0 }}
 			exit={{ opacity: 0, x: 100 }}
 			transition={{ duration: 0.2 }}
+			onHoverStart={() => setIsHovered(true)}
+			onHoverEnd={() => setIsHovered(false)}
 		>
 			{props.message}
-			<button
-				type="button"
+			<Button
 				className={`alert-button ${props.status}`}
 				onClick={() => close(props.id)}
 			>
@@ -41,7 +49,7 @@ export const Alert = (props: IAlertProps): JSX.Element => {
 						d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
 					/>
 				</svg>
-			</button>
+			</Button>
 		</motion.span>
 	);
 };

@@ -2,8 +2,8 @@ import { FC, useState } from "react";
 
 import { Navigation } from "../navigation/Navigation";
 import { SectionItem } from "./SectionItem";
-import { useGetFoodsQuery } from "../../store/food/food.api";
-import { ISection } from "../../interfaces";
+import { useGetFoodsQuery } from "@store/food/food.api";
+import { ISection } from "@/interfaces";
 import { SectionItemPlaceholder } from "../ui/skeleton/SectionItemPlaceholder";
 import { NavigationPlaceholder } from "../ui/skeleton/NavigationPlaceholder";
 

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { ISection } from "./food.types";
-import { sortItems } from "../../utils";
+import { sortItems } from "@/utils";
 
 export const foodApi = createApi({
 	reducerPath: "api/food",

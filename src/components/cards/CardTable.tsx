@@ -1,5 +1,5 @@
-import { IProperties } from "../../interfaces";
-import { NUTRIENTS } from "../../constants/Nutrients";
+import { IProperties } from "@/interfaces";
+import { NUTRIENTS } from "@constants/Nutrients";
 
 export const CardTable = ({
 	data,

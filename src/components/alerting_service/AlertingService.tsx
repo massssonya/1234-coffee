@@ -1,10 +1,9 @@
 import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Alert } from "../ui/alert/Alert";
 import { IAlertingServiceProps } from "./alerting_service.props";
-import { IAlert } from "../../types/alert";
-import { useEffect } from "react";
+import { IAlert } from "@my_types/alert";
 import { onAlert, onClosed } from "./services/alerting_service";
 
 export const AlertingService = (props: IAlertingServiceProps): JSX.Element => {

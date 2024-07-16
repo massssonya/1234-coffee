@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { CardLike } from "./CardLike";
 import { CardTable } from "./CardTable";
-import { CardDescription } from "../cards/CardDescription";
-import { ISectionItem } from "../../interfaces";
-import { useActions } from "../../hooks/useActions";
+import { CardDescription } from "./CardDescription";
+import { ISectionItem } from "@/interfaces";
+import { useActions } from "@hooks/useActions";
 import { info, warning } from "../alerting_service/services/alerting_service";
-import defaultImg from "../../assets/default.webp";
+import defaultImg from "@assets/default.webp";
 
 export const Card = ({
 	data,
@@ -36,7 +36,11 @@ export const Card = ({
 		setIsOpen((prev) => !prev);
 	};
 	return (
-		<div
+		<motion.div
+			initial={{ y: 100, opacity: 0.5 }}
+			viewport={{ once: true }}
+			whileInView={{ y: 0, opacity: 1 }}
+			transition={{ duration: 1, ease: "easeInOut" }}
 			className={
 				`card` +
 				(data.isDisabled
@@ -81,6 +85,6 @@ export const Card = ({
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };

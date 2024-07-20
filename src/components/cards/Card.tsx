@@ -1,25 +1,21 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 
+import { CardHeader } from "./CardHeader";
+import { CardImg } from "./CardImg";
 import { CardLike } from "./CardLike";
 import { CardTable } from "./CardTable";
 import { CardDescription } from "./CardDescription";
+
 import { ISectionItem } from "@/interfaces";
 import { useActions } from "@hooks/useActions";
 import { info, warning } from "../alerting_service/services/alerting_service";
-import defaultImg from "@assets/default.webp";
-import { Badge } from "../ui/badge/Badge";
+import { Button } from "../ui/button/Button";
 
-export const Card = ({
-	data,
-	isFavorite = false
-}: {
-	data: ISectionItem;
-	isFavorite?: boolean;
-}) => {
-	const [isLike, setIsLike] = useState(isFavorite);
+export const Card = ({ data }: { data: ISectionItem }) => {
+	const [isLike, setIsLike] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const { addFavorite, removeFavorite } = useActions();
+	const { addFavorite, removeFavorite, addItem } = useActions();
 
 	const handleLike = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
 		e.stopPropagation();
@@ -36,44 +32,29 @@ export const Card = ({
 		e.stopPropagation();
 		setIsOpen((prev) => !prev);
 	};
+
+	const handleAddCart = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+		e.stopPropagation();
+		addItem({ ...data, quantity: 1 });
+		info(`Товар ${data.name} добавлен в корзину`, 3);
+	}
 	return (
-		<motion.div
-			initial={{ y: 50, opacity: 0 }}
-			viewport={{ once: true }}
-			whileInView={{ y: 0, opacity: data.isDisabled ? 0.5 : 1 }}
-			transition={{ duration: 1, ease: "easeInOut" }}
+		<div
 			className={
 				`card` +
 				(data.isDisabled
 					? " card-disabled"
 					: "" + (data.description ? " cursor-pointer" : ""))
-				// + (isOpen ? " card-open" : "")
 			}
 			onClick={data.description ? (e) => handleOpen(e) : () => {}}
 		>
 			{/*	Img */}
-			<img
-				className="card-img"
-				src={data.img}
-				alt={data.name}
-				onError={(e) => (e.currentTarget.src = defaultImg)}
-			/>
-			{/*	Not available */}
-			{/* {data.isDisabled && (
-				<div className="card-not-available">Нет в наличии</div>
-			)} */}
+			<CardImg img={data.img} name={data.name} />
 			{/*	Icon Like */}
 			<CardLike isLike={isLike} handleClick={handleLike} />
 			<div className="card-container">
 				<div className="card-info">
-					<div className="card-header">
-						<h3 className="card-title">{data.name}</h3>
-						{data.isDisabled ? (
-							<Badge color="error">Нет в наличии</Badge>
-						) : (
-							<Badge color="success">Есть в наличии</Badge>
-						)}
-					</div>
+					<CardHeader name={data.name} isDisabled={data.isDisabled} />
 					{/* Table */}
 					<div className="card-table">
 						{data.properties && (
@@ -89,9 +70,11 @@ export const Card = ({
 					<div className="card-footer">
 						{/*	Price */}
 						<p className="card-price">{data.price} Р</p>
+						{/*	Button */}
+						<Button onClick={(e) => handleAddCart(e)}>В корзину</Button>
 					</div>
 				</div>
 			</div>
-		</motion.div>
+		</div>
 	);
 };

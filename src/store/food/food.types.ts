@@ -20,3 +20,12 @@ export interface IProperties {
 	carbohydrates?: number | string;
 	calories?: number | string;
 }
+
+export interface ICartItem extends ISectionItem {
+	quantity: number;
+}
+
+export interface ICart {
+	items: ICartItem[];
+	totalPrice: number;
+}

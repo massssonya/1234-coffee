@@ -16,6 +16,7 @@ export const foodApi = createApi({
 					const sortedItems = item.items
 						? sortItems(item.items, (a, b) => a.isDisabled - b.isDisabled)
 						: [];
+
 					return {
 						...item,
 						items: sortedItems

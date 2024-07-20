@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { Button } from "../Button";
+import { Button } from "../button/Button";
 import { IAlertProps } from "./alert.props";
 import { close } from "@components/alerting_service/services/alerting_service";
 
@@ -24,8 +24,8 @@ export const Alert = (props: IAlertProps): JSX.Element => {
 			role="alert"
 			initial={{ opacity: 0, y: 10 }}
 			animate={{ opacity: 1, y: 0 }}
-			exit={{ opacity: 0, x: 100 }}
-			transition={{ duration: 0.2 }}
+			exit={{ opacity: 0 }}
+			transition={{ duration: 0.2, ease: "easeInOut" }}
 			onHoverStart={() => setIsHovered(true)}
 			onHoverEnd={() => setIsHovered(false)}
 		>

@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ISectionItem } from "./food.types";
-
-const initialState: ISectionItem[] = [];
+import { ICartItem, ISectionItem } from "./food.types";
 
 const favoriteSlice = createSlice({
 	name: "favorite",
-	initialState,
+	initialState: <ISectionItem[]>[],
 	reducers: {
 		addFavorite: (state, action: PayloadAction<ISectionItem>) => {
-			state.push(action.payload);
+			// state.push(action.payload);
+			return [...state, action.payload];
 		},
 		removeFavorite: (state, action: PayloadAction<ISectionItem>) => {
 			return state.filter((item) => item.id !== action.payload.id);
@@ -18,10 +17,22 @@ const favoriteSlice = createSlice({
 
 const cartSlice = createSlice({
 	name: "cart",
-	initialState,
+	initialState: <ICartItem[]>[],
 	reducers: {
-		addItem: (state, action: PayloadAction<ISectionItem>) => {
-			state.push(action.payload);
+		addItem: (state, action: PayloadAction<ICartItem>) => {
+			if (state.some((item) => item.id === action.payload.id)) {
+				return state.map((item) => {
+					if (item.id === action.payload.id) {
+						return {
+							...item,
+							quantity: item.quantity + action.payload.quantity
+						};
+					}
+					return item;
+				});
+			}
+
+			return [...state, action.payload];
 		},
 		removeItem: (state, action: PayloadAction<ISectionItem>) => {
 			return state.filter((item) => item.id !== action.payload.id);

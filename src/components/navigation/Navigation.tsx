@@ -1,6 +1,9 @@
 import { useRef, useLayoutEffect } from "react";
 
 import { NavigationLink } from "./NavigationLink";
+// import { FavoriteButton } from "../favorite/FavoriteButton";
+// import { BurgerMenu } from "../burger/BurgerMenu";
+import { CartButton } from "../cart/CartButton";
 
 export function Navigation({
 	items,
@@ -22,19 +25,29 @@ export function Navigation({
 	}, [activeSection]);
 
 	return (
-		<nav className="navigation">
-			<ul ref={ulRef} className="navigation-list">
-				{items.map((item) => {
-					return (
-						<NavigationLink
-							key={item.id}
-							item={item}
-							activeSection={activeSection}
-							setActiveSection={setActiveSection}
-						/>
-					);
-				})}
-			</ul>
-		</nav>
+		<>
+			<nav className="navigation">
+				<ul ref={ulRef} className="navigation-list">
+					{items.map((item) => {
+						return (
+							<NavigationLink
+								key={item.id}
+								item={item}
+								activeSection={activeSection}
+								setActiveSection={setActiveSection}
+							/>
+						);
+					})}
+				</ul>
+				<ul className="account-list">
+					<li>
+						<CartButton />
+					</li>
+					{/* <li>
+						<FavoriteButton />
+					</li> */}
+				</ul>
+			</nav>
+		</>
 	);
 }

@@ -28,8 +28,15 @@ export const SectionItem = ({ item }: { item: ISection }) => {
 				/>
 				<div className="cards-container">
 					{items?.map((item) => (
-						<Card key={item.id} data={item} />
-						// <CardPlaceholder key={item.id} />
+						<motion.div
+							key={item.id}
+							initial={{ y: 50, filter: "blur(10px)" }}
+							viewport={{ once: true }}
+							whileInView={{ y: 0, filter: "blur(0px)" }}
+							transition={{ duration: 1, ease: "easeInOut" }}
+						>
+							<Card data={item} />
+						</motion.div>
 					))}
 				</div>
 			</motion.div>

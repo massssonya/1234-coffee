@@ -1,4 +1,4 @@
-import { Badge } from "../ui/badge/Badge";
+import { Badge } from "../../ui/badge/Badge";
 
 export const CardHeader = ({
 	name,

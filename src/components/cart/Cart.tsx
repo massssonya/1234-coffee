@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { CartContext } from "@hooks/context/cart/CartContext";
 
@@ -8,7 +8,7 @@ import { Drawer } from "../ui/drawer/Drawer";
 import { CartForm } from "./CartForm";
 
 export const Cart = () => {
-	const { isOpen, setIsOpen } = useContext(CartContext);
+	const { isOpen, setIsOpen, animationCart } = useContext(CartContext);
 
 	const animation = {
 		initial: { x: "100%" },
@@ -16,6 +16,10 @@ export const Cart = () => {
 		exit: { x: "100%" },
 		transition: { duration: 0.2 }
 	};
+
+	useEffect(() => {
+		animationCart();
+	}, [isOpen, animationCart]);
 
 	return (
 		<AnimatePresence>

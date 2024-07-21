@@ -1,20 +1,16 @@
 import { Button } from "../button/Button";
+import { IDrawer } from "./drawer.props";
 
 export const Drawer = ({
 	children,
 	className,
 	title,
 	onClose
-}: {
-	children: React.ReactNode;
-	className?: string;
-	title?: string;
-	onClose: () => void;
-}) => {
+}: IDrawer) => {
 	return (
 		<div className={`drawer ${className}`} tabIndex={-1}>
 			<h5 className="drawer-header">{title}</h5>
-			<hr className="my-4" />
+			<hr className="my-4 inset-x-2" />
 			<Button
 				className="drawer-btn__close"
 				onClick={onClose}

@@ -9,6 +9,10 @@ import { Cart } from "@components/cart/Cart";
 
 export default function App() {
 	useEffect(() => {
+		const section = document.getElementById("section");
+		if (section) {
+			section.style.pointerEvents = "auto";
+		}
 		const handleReload = () => {
 			window.scrollTo({
 				top: 0

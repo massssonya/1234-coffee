@@ -9,8 +9,8 @@ import { CardDescription } from "./CardDescription";
 
 import { ISectionItem } from "@/interfaces";
 import { useActions } from "@hooks/useActions";
-import { info, warning } from "../alerting_service/services/alerting_service";
-import { Button } from "../ui/button/Button";
+import { info, warning } from "../../alerting_service/services/alerting_service";
+import { Button } from "../../ui/button/Button";
 
 export const Card = ({ data }: { data: ISectionItem }) => {
 	const [isLike, setIsLike] = useState(false);
@@ -37,7 +37,7 @@ export const Card = ({ data }: { data: ISectionItem }) => {
 		e.stopPropagation();
 		addItem({ ...data, quantity: 1 });
 		info(`Товар ${data.name} добавлен в корзину`, 3);
-	}
+	};
 	return (
 		<div
 			className={
@@ -71,7 +71,9 @@ export const Card = ({ data }: { data: ISectionItem }) => {
 						{/*	Price */}
 						<p className="card-price">{data.price} Р</p>
 						{/*	Button */}
-						<Button onClick={(e) => handleAddCart(e)}>В корзину</Button>
+						{!data.isDisabled && (
+							<Button onClick={(e) => handleAddCart(e)}>В корзину</Button>
+						)}
 					</div>
 				</div>
 			</div>

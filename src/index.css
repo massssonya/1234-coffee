@@ -70,7 +70,7 @@
 
 	/*  Section */
 	.section {
-		@apply sm:mx-2 mx-3 max-w-full;
+		@apply sm:mx-2 mx-3 max-w-full transition-all duration-1000;
 	}
 
 	/*  Section Item */
@@ -233,7 +233,15 @@
 
 	/*  Button  */
 	.button {
-		@apply text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80 font-medium rounded-lg text-sm px-5 py-2 text-center;
+		@apply text-white font-medium rounded-lg text-sm px-5 py-2 text-center;
+
+		&.default {
+			@apply bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80;
+		}
+
+		&.submit {
+			@apply bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800;
+		}
 	}
 
 	/*  Burger  */
@@ -282,15 +290,33 @@
 	}
 
 	.drawer {
-		@apply relative p-4 overflow-y-auto transition-transform transform-none;
+		@apply px-4 py-4 relative overflow-y-auto transition-transform transform-none;
 	}
 
 	.drawer-header {
-		@apply inline-flex items-center text-xl font-semibold text-gray-500 dark:text-gray-400;
+		@apply leading-none inline-flex items-center text-xl font-semibold text-gray-500 dark:text-gray-400;
 	}
 
 	.drawer-btn__close {
 		@apply absolute top-2.5 right-2.5 p-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 end-2.5 dark:hover:bg-gray-600 dark:hover:text-white;
+	}
+
+	/* Cart Form */
+
+	.cart-form {
+		@apply w-full flex flex-col justify-between;
+	}
+
+	.cart-cards {
+		@apply relative h-[calc(100vh-12.5rem)] overflow-y-auto no-scrollbar;
+	}
+
+	.cart-footer {
+		@apply w-full flex flex-col items-end;
+	}
+
+	.cart-footer__total {
+		@apply my-5 text-xl font-light text-right dark:text-gray-300;
 	}
 
 	/*  Footer  */

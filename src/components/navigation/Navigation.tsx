@@ -26,7 +26,7 @@ export function Navigation({
 
 	return (
 		<>
-			<nav className="navigation">
+			<nav className="navigation" id="nav">
 				<ul ref={ulRef} className="navigation-list">
 					{items.map((item) => {
 						return (

@@ -1,7 +1,7 @@
 import { IButton } from "./button.props";
 
 export const Button = ({
-	className = "button",
+	className = "button default",
 	children = "Button",
 	onClick,
 	...props

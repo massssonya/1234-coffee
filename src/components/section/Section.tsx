@@ -24,7 +24,7 @@ const Section: FC = () => {
 
 	return (
 		<>
-			<div className="page-wrapper mx-auto">
+			<div className="page-wrapper mx-auto" id="section">
 				{isLoading ? (
 					<NavigationPlaceholder />
 				) : (

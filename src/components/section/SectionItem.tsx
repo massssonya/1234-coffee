@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-import { Card } from "@components/cards/Card";
+import { Card } from "@/components/section/card/Card";
 import { ISection } from "@/interfaces";
 
 export const SectionItem = ({ item }: { item: ISection }) => {

@@ -11,7 +11,7 @@ export const CartButton = () => {
 	const cart = useTypedSelector((state) => state.cart);
 
 	return (
-		<Button onClick={setIsOpen} className="button relative">
+		<Button onClick={setIsOpen} className="button submit relative">
 			Корзина
 			{cart.length > 0 && <Indicator>{cart.length}</Indicator>}
 		</Button>

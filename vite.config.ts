@@ -14,7 +14,8 @@ export default defineConfig({
 			"@store": "/src/store",
 			"@types": "/src/types",
 			"@constants": "/src/constants",
-			"@assets": "/src/assets"
+			"@assets": "/src/assets",
+			"@pages": "/src/pages"
 		}
 	}
 });

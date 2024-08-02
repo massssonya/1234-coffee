@@ -1,4 +1,4 @@
-import { ICartItem } from "./store/food/food.types";
+import { ICartItem, ISection } from "./store/food/food.types";
 
 export function sortItems<T>(items: T[], compareFn: (a: T, b: T) => number) {
 	return items
@@ -26,4 +26,15 @@ export function formatPhone(phone: string) {
 
 export function totalPrice(items: ICartItem[]) {
 	return items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+}
+
+export function getSectionNavigation(
+	items: ISection[]
+): { id: string; title: string }[] {
+	const nav = items?.map((item) => ({
+		id: item.id,
+		title: item.title
+	}));
+
+	return nav;
 }

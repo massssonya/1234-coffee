@@ -19,6 +19,7 @@
 			"@assets/*": ["src/assets/*"],
 			"@constants/*": ["src/constants/*"],
 			"@my_types/*": ["src/my_types/*"],
+			"@pages/*": ["src/pages/*"]
 		},
 		/* Bundler mode */
 		"moduleResolution": "bundler",

@@ -1,0 +1,7 @@
+App
+	Home
+		Section
+		Cart
+		Footer
+	Login
+	Payment

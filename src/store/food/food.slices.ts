@@ -34,8 +34,23 @@ const cartSlice = createSlice({
 
 			return [...state, action.payload];
 		},
-		removeItem: (state, action: PayloadAction<ISectionItem>) => {
-			return state.filter((item) => item.id !== action.payload.id);
+		removeItem: (state, action: PayloadAction<ICartItem>) => {
+			const oldQuantity =
+				state.find((item) => item.id === action.payload.id)?.quantity || 0;
+			const newQuantity = oldQuantity - action.payload.quantity;
+			if (newQuantity === 0) {
+				return state.filter((item) => item.id !== action.payload.id);
+			} else {
+				return state.map((item) => {
+					if (item.id === action.payload.id) {
+						return {
+							...item,
+							quantity: newQuantity
+						};
+					}
+					return item;
+				});
+			}
 		}
 	}
 });

@@ -18,21 +18,21 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const setNavTransform = (isOpen: boolean, offsetY: number | undefined) => {
 		const nav = document.getElementById("nav");
-		if (nav) {
-			nav.style.transition = "all .5s";
-			nav.style.transform = isOpen
-				? `translateY(${offsetY}px)`
-				: "translateY(0)";
+		const style = nav?.style;
+		if (nav && style) {
+			style.transition = "all .5s";
+			style.transform = isOpen ? `translateY(${offsetY}px)` : "translateY(0)";
 		}
 	};
 
 	const setSectionTransform = (isOpen: boolean) => {
-		const section = document.getElementById("section");
-		if (section) {
-			section.style.transition = "all .3s";
-			section.style.pointerEvents = isOpen ? "none" : "auto";
-			section.style.filter = isOpen ? "grayscale(100%) blur(3px)" : "none";
-			section.style.transform = isOpen ? "translateX(-20%)" : "none";
+		const section = document.getElementById("mainPage");
+		const style = section?.style;
+		if (section && style) {
+			style.transition = "all .3s";
+			style.pointerEvents = isOpen ? "none" : "auto";
+			style.filter = isOpen ? "grayscale(100%) blur(3px)" : "none";
+			style.transform = isOpen ? "translateX(-20%)" : "none";
 		}
 	};
 
@@ -56,5 +56,3 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		</CartContext.Provider>
 	);
 };
-
-export default CartProvider;

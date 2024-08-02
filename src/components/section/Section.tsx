@@ -1,54 +1,45 @@
-import { FC, useState } from "react";
+import { motion } from "framer-motion";
 
-import { Navigation } from "../navigation/Navigation";
-import { SectionItem } from "./SectionItem";
-import { useGetFoodsQuery } from "@store/food/food.api";
-import { ISection } from "@/interfaces";
-import { SectionItemPlaceholder } from "../ui/skeleton/SectionItemPlaceholder";
-import { NavigationPlaceholder } from "../ui/skeleton/NavigationPlaceholder";
+import { Card } from "@components/section/card/Card";
+import { ISection } from "@store/food/food.types";
 
-const Section: FC = () => {
-	const [activeSection, setActiveSection] = useState("");
-	const { data, isLoading, error, isSuccess, isError } = useGetFoodsQuery();
-
-	const sectionNavigation = (
-		items: ISection[]
-	): { id: string; title: string }[] => {
-		const sections = items?.map((item) => ({
-			id: item.id,
-			title: item.title
-		}));
-
-		return sections;
-	};
+export const Section = ({ item }: { item: ISection }) => {
+	const { title, items, id } = item;
 
 	return (
-		<>
-			<div className="page-wrapper mx-auto" id="section">
-				{isLoading ? (
-					<NavigationPlaceholder />
-				) : (
-					<Navigation
-						items={isSuccess ? sectionNavigation(data) : []}
-						activeSection={activeSection}
-						setActiveSection={setActiveSection}
-					/>
-				)}
-
-				<main>
-					{isLoading ? (
-						<SectionItemPlaceholder />
-					) : isError ? (
-						<div className="text-red-500">{error}</div>
-					) : (
-						data?.map((item) => <SectionItem key={item.id} item={item} />)
-					)}
-					{/* {favorite.length > 0 && <SectionItem id="favorite" title="Favorite" items={favorite} />} */}
-				</main>
-
-			</div>
-		</>
+		<section className="section" id={id}>
+			<motion.div className="section-item">
+				<motion.h2
+					id={id}
+					className="section-item__title"
+					initial={{ x: 10, opacity: 0 }}
+					whileInView={{ x: 0, opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 1 }}
+				>
+					{title}
+				</motion.h2>
+				<motion.hr
+					className="section-item__hr"
+					initial={{ x: -20, opacity: 0 }}
+					whileInView={{ x: 0, opacity: 1 }}
+					viewport={{ once: true }}
+					transition={{ duration: 1 }}
+				/>
+				<div className="cards-container">
+					{items?.map((item) => (
+						<motion.div
+							key={item.id}
+							initial={{ y: 50, filter: "blur(10px)" }}
+							viewport={{ once: true }}
+							whileInView={{ y: 0, filter: "blur(0px)" }}
+							transition={{ duration: 1, ease: "easeInOut" }}
+						>
+							<Card data={item} />
+						</motion.div>
+					))}
+				</div>
+			</motion.div>
+		</section>
 	);
 };
-
-export default Section;

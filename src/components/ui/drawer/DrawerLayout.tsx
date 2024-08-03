@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { IDrawerLayout } from "./layout.props";
+import "./Drawer.css";
 
 export const DrawerLayout = ({
 	position,

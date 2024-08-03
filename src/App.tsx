@@ -20,8 +20,8 @@ export default function App() {
 	}, []);
 
 	return (
-		<>
+		<div className="max-w-[1024px] mx-auto">
 			<Outlet />
-		</>
+		</div>
 	);
 }

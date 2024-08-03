@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Card } from "@components/section/card/Card";
 import { ISection } from "@store/food/food.types";
 
+import "./Section.css";
+
 export const Section = ({ item }: { item: ISection }) => {
 	const { title, items, id } = item;
 

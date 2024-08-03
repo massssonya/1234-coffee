@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
-import SelectLine from "./SelectLine";
+import { SelectLine } from "./SelectLine";
 
 export const NavigationLink = ({
 	item,

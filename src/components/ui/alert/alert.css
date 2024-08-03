@@ -1,0 +1,62 @@
+/*  Alerting Service  */
+
+.alerting-service {
+	@apply fixed bottom-[clamp(1.5rem,3vw,2rem)] z-50 flex flex-col gap-2;
+
+	&.top {
+		@apply top-5;
+	}
+
+	&.bottom {
+		@apply bottom-5;
+	}
+
+	&.left {
+		@apply left-5;
+	}
+
+	&.right {
+		@apply right-5;
+	}
+}
+
+/*  Alert  */
+.alert {
+	@apply inline-flex items-center justify-between px-2 py-1 me-2 font-medium rounded text-[clamp(0.7rem,3vw,1rem)] cursor-default;
+
+	&.success {
+		@apply bg-success text-success-light;
+	}
+
+	&.error {
+		@apply bg-error text-error-light;
+	}
+
+	&.warning {
+		@apply bg-warning text-warning-light;
+	}
+
+	&.info {
+		@apply bg-info text-info-light;
+	}
+}
+
+.alert-button {
+	@apply inline-flex items-center p-1 ms-2 text-sm rounded-sm text-green-400 bg-transparent hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300;
+
+	&.error {
+		@apply text-error-light hover:bg-error-light hover:text-error dark:text-error dark:hover:bg-error dark:hover:text-error-light;
+	}
+
+	&.warning {
+		@apply text-warning-light hover:bg-warning-light hover:text-warning dark:text-warning-light dark:hover:bg-warning-light dark:hover:text-warning;
+	}
+
+	&.info {
+		@apply text-info-light hover:bg-info-light hover:text-info dark:text-info-light dark:hover:bg-info-light dark:hover:text-info;
+	}
+
+	&.success {
+		@apply text-success-light hover:bg-success-light hover:text-success dark:text-success dark:hover:bg-success dark:hover:text-success-light;
+	}
+}

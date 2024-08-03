@@ -1,0 +1,33 @@
+	/*  Drawer  */
+
+	.drawer-layout {
+		@apply fixed z-20 bg-white dark:bg-gray-800;
+
+		&.top {
+			@apply top-0 left-0 right-0 w-full;
+		}
+
+		&.bottom {
+			@apply bottom-0 left-0 right-0 w-full;
+		}
+
+		&.left {
+			@apply left-0 top-0 h-screen w-full md:w-[520px];
+		}
+
+		&.right {
+			@apply right-0 top-0 h-screen w-full md:w-[520px];
+		}
+	}
+
+	.drawer {
+		@apply px-4 py-4 relative overflow-y-auto transition-transform transform-none;
+	}
+
+	.drawer-header {
+		@apply leading-none inline-flex items-center text-xl font-semibold text-gray-500 dark:text-gray-400;
+	}
+
+	.drawer-btn__close {
+		@apply absolute top-2.5 right-2.5 p-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 end-2.5 dark:hover:bg-gray-600 dark:hover:text-white;
+	}

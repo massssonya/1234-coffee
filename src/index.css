@@ -10,15 +10,30 @@
 		black 95.92%,
 		transparent 100%
 	);
+	--bg-color: white;
+
 }
 
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg-color: linear-gradient(to right, #00281c, #007473);
+	}
+}
+
+html {
+	background: var(--bg-color);
+}
+
+body {
+	background: transparent;
+	margin: 0;
+	padding: 0;
+}
+
+
+
 @layer base {
-	html {
-		@apply bg-primary dark:bg-gradient-to-r dark:from-dark-primary-left dark:to-dark-primary-right;
-	}
-	body {
-		@apply max-w-[1024px] mx-auto;
-	}
+
 
 	hr {
 		@apply w-full h-1 my-2 bg-black rounded dark:bg-white;
@@ -45,223 +60,14 @@
 }
 
 @layer components {
-	/*  Navigation */
-	.navigation {
-		@apply py-4 fixed top-0 left-0 z-10 w-full flex justify-center bg-white dark:text-white dark:bg-gradient-to-r dark:from-dark-primary-left dark:to-dark-primary-right;
-	}
-
-	.navigation-list {
-		@apply py-1 no-scrollbar relative flex max-w-[1024px] h-full overflow-x-scroll snap-mandatory snap-x scroll-pl-4 first:pl-6;
-		mask-repeat: no-repeat;
-		mask-image: var(--mask-gradient);
-		-webkit-mask-image: var(--mask-gradient);
-		-webkit-mask-repeat: no-repeat;
-	}
-
-	/* .navigation-list::before {
-		content: "";
-		@apply absolute top-0 left-0 w-6 h-14 bg-gradient-to-r from-white to-transparent dark:bg-gradient-to-r dark:from-dark-primary-left dark:to-transparent;
-	}
-
-	.navigation-list::after {
-		content: "";
-		@apply absolute top-0 right-0 w-6 h-14 bg-gradient-to-l from-white to-transparent dark:bg-gradient-to-r dark:from-transparent dark:to-dark-primary-right;
-	} */
-
-	.navigation-list__item {
-		@apply cursor-pointer select-none text-nowrap snap-start mr-3 md:last:pr-2;
-	}
 
 
-	.navigation-list__select-line {
-		@apply bg-black dark:bg-white;
-	}
 
-	.navigation-list__btns {
-		@apply flex md:gap-2 md:ml-4 ml-0 md:px-4 px-1 border-l border-black;
-	}
 
-	/*  Account */
 
-	/*  Section */
-	.section {
-		@apply sm:mx-2 mx-3 max-w-full transition-all duration-1000;
-	}
 
-	/*  Section Item */
-	.section-item {
-		@apply flex-1;
-	}
-	.section-item__title {
-		@apply sm:text-3xl text-2xl font-extrabold text-nowrap pt-16 dark:text-white;
-	}
-	.section-item__hr {
-		@apply w-full h-1 my-4 bg-black rounded dark:bg-white;
-	}
 
-	/*  Cards  */
-	.cards-container {
-		@apply grid md:grid-cols-2 gap-3 last:mb-8;
-	}
-	.card {
-		@apply relative bg-white rounded-lg select-none dark:bg-[#00716c];
-	}
 
-	.card:hover {
-		.card-img img {
-			@apply scale-105 duration-300;
-		}
-	}
-
-	.card-disabled {
-		@apply opacity-50 cursor-not-allowed pointer-events-none;
-	}
-	.card-not-available {
-		@apply absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[clamp(1.5rem,3vw,2rem)] font-bold text-nowrap;
-	}
-	.card-img {
-		@apply w-full h-auto object-cover overflow-hidden;
-	}
-
-	.card-img img {
-		@apply w-full duration-300;
-	}
-
-	.card-container {
-		@apply sm:px-4 px-2 py-4 border-x border-b border-teal-700 rounded-b-lg select-none;
-	}
-
-	.card-info {
-		@apply flex flex-col px-2;
-	}
-
-	.card-header {
-		@apply flex justify-between items-center;
-	}
-	.card-title {
-		@apply mb-2 sm:text-2xl text-[clamp(1rem,3vw,1.5rem)] font-bold tracking-tight text-teal-700 dark:text-white;
-	}
-	.card-table {
-		@apply w-full my-3 flex justify-center;
-	}
-
-	.card-description {
-		@apply mb-2 max-h-20 overflow-y-auto no-scrollbar dark:text-white;
-	}
-
-	.card-footer {
-		@apply flex justify-between items-center;
-	}
-	.card-price {
-		@apply text-xl font-bold dark:text-white;
-	}
-	.card-like {
-		@apply w-12 flex justify-center;
-	}
-	.card-like__btn {
-		@apply w-10 h-10 flex justify-center items-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-800;
-	}
-
-	/*  Table  */
-	.table {
-		@apply text-[clamp(0.6rem,3vw,1rem)] text-center text-gray-500 dark:text-gray-100 w-full;
-	}
-
-	.table-thead {
-		@apply text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-200;
-	}
-
-	.table-th {
-		@apply px-2 border-r border-teal-700 last:border-none dark:bg-table;
-	}
-
-	.table-tr {
-		@apply bg-white dark:bg-gray-800 dark:border-gray-700;
-	}
-
-	.table-td {
-		@apply px-3 border-r border-teal-700 last:border-none;
-	}
-
-	/*  Alerting Service  */
-
-	.alerting-service {
-		@apply fixed bottom-[clamp(1.5rem,3vw,2rem)] z-50 flex flex-col gap-2;
-
-		&.top {
-			@apply top-5;
-		}
-
-		&.bottom {
-			@apply bottom-5;
-		}
-
-		&.left {
-			@apply left-5;
-		}
-
-		&.right {
-			@apply right-5;
-		}
-	}
-
-	/*  Alert  */
-	.alert {
-		@apply inline-flex items-center justify-between px-2 py-1 me-2 font-medium rounded text-[clamp(0.7rem,3vw,1rem)] cursor-default;
-
-		&.success {
-			@apply bg-success text-success-light;
-		}
-
-		&.error {
-			@apply bg-error text-error-light;
-		}
-
-		&.warning {
-			@apply bg-warning text-warning-light;
-		}
-
-		&.info {
-			@apply bg-info text-info-light;
-		}
-	}
-
-	.alert-button {
-		@apply inline-flex items-center p-1 ms-2 text-sm rounded-sm text-green-400 bg-transparent hover:bg-green-200 hover:text-green-900 dark:hover:bg-green-800 dark:hover:text-green-300;
-
-		&.error {
-			@apply text-error-light hover:bg-error-light hover:text-error dark:text-error dark:hover:bg-error dark:hover:text-error-light;
-		}
-
-		&.warning {
-			@apply text-warning-light hover:bg-warning-light hover:text-warning dark:text-warning-light dark:hover:bg-warning-light dark:hover:text-warning;
-		}
-
-		&.info {
-			@apply text-info-light hover:bg-info-light hover:text-info dark:text-info-light dark:hover:bg-info-light dark:hover:text-info;
-		}
-
-		&.success {
-			@apply text-success-light hover:bg-success-light hover:text-success dark:text-success dark:hover:bg-success dark:hover:text-success-light;
-		}
-	}
-
-	/*  Button  */
-	.button {
-		@apply text-white font-medium rounded-lg text-sm md:px-5 md:py-2 px-2 py-1 text-center;
-
-		&.default {
-			@apply bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 shadow-lg shadow-teal-500/50 dark:shadow-lg dark:shadow-teal-800/80;
-		}
-
-		&.submit {
-			@apply bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800;
-		}
-
-		&.cart {
-			@apply bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:outline-none focus:ring-pink-300 dark:focus:ring-pink-800;
-		}
-	}
 
 	/*  Burger  */
 
@@ -269,82 +75,8 @@
 		@apply block md:hidden;
 	}
 
-	/*  Badge  */
-	.badge {
-		@apply text-xs sm:text-sm font-medium me-2 px-2.5 py-0.5 rounded-full;
 
-		&.default {
-			@apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300;
-		}
 
-		&.success {
-			@apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300;
-		}
 
-		&.error {
-			@apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300;
-		}
-	}
 
-	/*  Drawer  */
-
-	.drawer-layout {
-		@apply fixed z-20 bg-white dark:bg-gray-800;
-
-		&.top {
-			@apply top-0 left-0 right-0 w-full;
-		}
-
-		&.bottom {
-			@apply bottom-0 left-0 right-0 w-full;
-		}
-
-		&.left {
-			@apply left-0 top-0 h-screen w-full md:w-[520px];
-		}
-
-		&.right {
-			@apply right-0 top-0 h-screen w-full md:w-[520px];
-		}
-	}
-
-	.drawer {
-		@apply px-4 py-4 relative overflow-y-auto transition-transform transform-none;
-	}
-
-	.drawer-header {
-		@apply leading-none inline-flex items-center text-xl font-semibold text-gray-500 dark:text-gray-400;
-	}
-
-	.drawer-btn__close {
-		@apply absolute top-2.5 right-2.5 p-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 end-2.5 dark:hover:bg-gray-600 dark:hover:text-white;
-	}
-
-	/* Cart Form */
-
-	.cart-form {
-		@apply w-full flex flex-col justify-between;
-	}
-
-	.cart-cards {
-		@apply relative h-[calc(100vh-12.5rem)] overflow-y-auto no-scrollbar;
-	}
-
-	.cart-footer {
-		@apply w-full flex flex-col items-end;
-	}
-
-	.cart-footer__total {
-		@apply my-5 text-xl font-light text-right dark:text-gray-300;
-	}
-
-	/*  Footer  */
-
-	.footer-container {
-		@apply w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between;
-
-		ul {
-			@apply flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0;
-		}
-	}
 }

@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { Button } from "../button/Button";
+import { Button } from "@components/ui/button/Button";
 import { IAlertProps } from "./alert.props";
 import { close } from "@components/alerting_service/services/alerting_service";
+import "./alert.css";
 
 export const Alert = (props: IAlertProps): JSX.Element => {
 	const [isHovered, setIsHovered] = useState(false);

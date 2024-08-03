@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
+import "./Card.css";
+
 import { CardHeader } from "./CardHeader";
 import { CardImg } from "./CardImg";
 import { CardLike } from "./CardLike";
@@ -9,8 +11,11 @@ import { CardDescription } from "./CardDescription";
 
 import { ISectionItem } from "@/interfaces";
 import { useActions } from "@hooks/useActions";
-import { info, warning } from "../../alerting_service/services/alerting_service";
-import { Button } from "../../ui/button/Button";
+import {
+	info,
+	warning
+} from "@components/alerting_service/services/alerting_service";
+import { Button } from "@components/ui/button/Button";
 
 export const Card = ({ data }: { data: ISectionItem }) => {
 	const [isLike, setIsLike] = useState(false);

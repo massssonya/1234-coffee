@@ -16,32 +16,28 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	};
 
-	const setNavTransform = (isOpen: boolean, offsetY: number | undefined) => {
+	const setNavTransform = (isOpen: boolean) => {
 		const nav = document.getElementById("nav");
 		const style = nav?.style;
 		if (nav && style) {
 			style.transition = "all .5s";
-			style.transform = isOpen ? `translateY(${offsetY}px)` : "translateY(0)";
+			style.transform = isOpen ? `translateY(${-60}px)` : "translateY(0)";
 		}
 	};
 
-	const setSectionTransform = (isOpen: boolean) => {
-		const section = document.getElementById("mainPage");
-		const style = section?.style;
-		if (section && style) {
-			style.transition = "all .3s";
-			style.pointerEvents = isOpen ? "none" : "auto";
-			style.filter = isOpen ? "grayscale(100%) blur(3px)" : "none";
-			style.transform = isOpen ? "translateX(-20%)" : "none";
+	const setSectionTransform = () => {
+		const page = document.getElementById("main-page");
+		if (page) {
+			isOpen
+				? page.classList.toggle("animationBlur")
+				: page.classList.remove("animationBlur");
 		}
 	};
 
 	const animationCart = () => {
-		const body = document.querySelector("body");
-		const offsetY = body?.getBoundingClientRect().top ?? 0;
+		setNavTransform(isOpen);
 		setBodyOverflow(isOpen ? "hidden" : "auto");
-		setNavTransform(isOpen, offsetY);
-		setSectionTransform(isOpen);
+		setSectionTransform();
 	};
 
 	return (

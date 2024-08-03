@@ -5,7 +5,7 @@ import "./index.css";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./store/store";
-import { Home } from "@pages/Home";
+import { Home } from "@/pages/home/Home.tsx";
 import { Error } from "@pages/Error.tsx";
 import { Login } from "@pages/Login";
 import { Payment } from "@pages/Payment";
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 		errorElement: <Error />,
 		children: [
 			{
-				path: "/home",
+				path: "/",
 				element: <Home />
 			},
 			{

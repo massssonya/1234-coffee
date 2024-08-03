@@ -1,4 +1,5 @@
 import { IButton } from "./button.props";
+import "./button.css";
 
 export const Button = ({
 	className = "button default",

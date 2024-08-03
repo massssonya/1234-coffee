@@ -1,5 +1,6 @@
 import { contacts } from "@/constants/contacts";
 import { formatPhone } from "@/utils";
+import "./Footer.css";
 
 export const Footer = () => {
 	const { socials, phone, email } = contacts;

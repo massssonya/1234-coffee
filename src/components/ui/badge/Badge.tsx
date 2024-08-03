@@ -1,4 +1,5 @@
 import { TColors } from "./badge.props";
+import "./badge.css";
 
 export const Badge = ({
 	children,

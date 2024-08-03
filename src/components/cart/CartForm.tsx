@@ -2,6 +2,7 @@ import { useTypedSelector } from "@/hooks/useTypedSelector";
 import { Button } from "@components/ui/button/Button";
 import { totalPrice } from "@/utils";
 import { CartCard } from "./card/CartCard";
+import "./Cart.css";
 
 export const CartForm = () => {
 	const cart = useTypedSelector((state) => state.cart);

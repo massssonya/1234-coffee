@@ -1,0 +1,15 @@
+/*  Section */
+.section {
+	@apply sm:mx-2 mx-3 max-w-full transition-all duration-1000;
+}
+
+/*  Section Item */
+.section-item {
+	@apply flex-1;
+}
+.section-item__title {
+	@apply sm:text-3xl text-2xl font-extrabold text-nowrap pt-16 dark:text-white;
+}
+.section-item__hr {
+	@apply w-full h-1 my-4 bg-black rounded dark:bg-white;
+}

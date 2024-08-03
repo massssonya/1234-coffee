@@ -5,6 +5,7 @@ import { NavigationLink } from "./NavigationLink";
 import { BurgerMenu } from "../burger/BurgerMenu";
 import { CartButton } from "./CartButton";
 import { AccountButton } from "./AccountButton";
+import "./Navigation.css";
 
 export function Navigation({
 	items,

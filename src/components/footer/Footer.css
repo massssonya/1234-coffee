@@ -1,0 +1,9 @@
+/*  Footer  */
+
+.footer-container {
+	@apply  border-none p-4 md:flex md:items-center md:justify-between ;
+
+	ul {
+		@apply flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-200 sm:mt-0;
+	}
+}

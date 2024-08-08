@@ -1,16 +1,15 @@
 export const NumberInput = ({
 	label = "Количество:",
-	value,
 	id,
-
+	value,
 	increment,
 	decrement
 }: {
 	label?: string;
-	value: number;
 	id: string;
-	increment: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-	decrement: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+	value: number;
+	increment: () => void;
+	decrement: () => void;
 }) => {
 	return (
 		<div className="max-w-xs mx-auto">
@@ -22,7 +21,7 @@ export const NumberInput = ({
 			</label>
 			<div className="relative flex items-center">
 				<button
-					onClick={(e) => decrement(e)}
+					onClick={decrement}
 					type="button"
 					id={`decrement-button-${id}`}
 					data-input-counter-decrement={`decrement-button-${id}`}
@@ -55,7 +54,7 @@ export const NumberInput = ({
 					onChange={(e) => e.target.value}
 				/>
 				<button
-					onClick={(e) => increment(e)}
+					onClick={increment}
 					type="button"
 					id={`increment-button-${id}`}
 					data-input-counter-increment={`counter-input-${id}`}

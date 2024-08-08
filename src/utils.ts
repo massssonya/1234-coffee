@@ -1,4 +1,4 @@
-import { ICartItem, ISection } from "./store/food/food.types";
+import { ICartItem, ISection } from "./store/types";
 
 export function sortItems<T>(items: T[], compareFn: (a: T, b: T) => number) {
 	return items

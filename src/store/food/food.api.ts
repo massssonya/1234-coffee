@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ISection } from "./food.types";
+import { ISection } from "../types";
 import { sortItems } from "@/utils";
 
 export const foodApi = createApi({
@@ -10,11 +10,13 @@ export const foodApi = createApi({
 	endpoints: (build) => ({
 		getFoods: build.query<ISection[], void>({
 			query: () => ({ url: `food` }),
-
 			transformResponse(res: ISection[]) {
 				return res.map((item) => {
 					const sortedItems = item.items
-						? sortItems(item.items, (a, b) => a.isDisabled - b.isDisabled)
+						? sortItems(
+								item.items,
+								(a, b) => Number(a.isDisabled) - Number(b.isDisabled)
+						  )
 						: [];
 
 					return {

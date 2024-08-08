@@ -1,6 +1,10 @@
 /*  Navigation */
 .navigation {
-	@apply py-4 fixed top-0 left-0 z-10 w-full flex justify-center bg-white dark:text-white dark:bg-gradient-to-r dark:from-dark-primary-left dark:to-dark-primary-right;
+	@apply py-4 fixed top-0 left-0 z-10 w-full flex justify-center bg-white dark:text-white dark:bg-gradient-to-r dark:from-dark-primary-left dark:to-dark-primary-right transition-all duration-300;
+
+	&.hidden {
+		@apply -translate-y-[100%];
+	}
 }
 
 .navigation-list {

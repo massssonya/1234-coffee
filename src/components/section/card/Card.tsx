@@ -20,15 +20,13 @@ import { Button } from "@components/ui/button/Button";
 export const Card = ({ data }: { data: ISectionItem }) => {
 	const [isLike, setIsLike] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
-	const { addFavorite, removeFavorite, addItem } = useActions();
+	const { addItem } = useActions();
 
 	const handleLike = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
 		e.stopPropagation();
 		if (isLike) {
-			removeFavorite(data);
 			warning(`Товар ${data.name} удален из избранного`, 3);
 		} else {
-			addFavorite(data);
 			info(`Товар ${data.name} добавлен в избранное`, 3);
 		}
 		setIsLike((prev) => !prev);
@@ -40,7 +38,7 @@ export const Card = ({ data }: { data: ISectionItem }) => {
 
 	const handleAddCart = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		e.stopPropagation();
-		addItem({ ...data, quantity: 1 });
+		addItem(data);
 		info(`Товар ${data.name} добавлен в корзину`, 3);
 	};
 	return (

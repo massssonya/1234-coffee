@@ -1,35 +1,27 @@
-import { AnimatePresence } from "framer-motion";
-import { useContext, useEffect } from "react";
-
-import { CartContext } from "@hooks/context/cart/CartContext";
-
 import { DrawerLayout } from "../ui/drawer/DrawerLayout";
 import { Drawer } from "../ui/drawer/Drawer";
 import { CartForm } from "./CartForm";
+import { useContext, memo, useCallback } from "react";
+import { CartContext } from "@/hooks/context/cart/CartContext";
 
-export const Cart = () => {
-	const { isOpen, setIsOpen, animationCart } = useContext(CartContext);
+export const Cart = memo(
+	({ setActiveSection }: { setActiveSection: (section: string) => void }) => {
+		const { isOpen, setIsOpen } = useContext(CartContext);
+		console.log("Cart rendered");
 
-	const animation = {
-		initial: { x: "100%" },
-		animate: { x: 0 },
-		exit: { x: "100%" },
-		transition: { duration: 0.2 }
-	};
+		const handleClose = useCallback(() => {
+			setIsOpen();
+		}, [setIsOpen]);
 
-	useEffect(() => {
-		animationCart();
-	}, [isOpen, animationCart]);
-
-	return (
-		<AnimatePresence>
-			{isOpen && (
-				<DrawerLayout position="right" animation={animation}>
-					<Drawer onClose={setIsOpen} title="Корзина">
-						<CartForm />
-					</Drawer>
-				</DrawerLayout>
-			)}
-		</AnimatePresence>
-	);
-};
+		return (
+			<DrawerLayout position="right" isOpen={isOpen}>
+				<Drawer onClose={handleClose} title="Корзина">
+					<CartForm
+						setActiveSection={setActiveSection}
+						closeCart={handleClose}
+					/>
+				</Drawer>
+			</DrawerLayout>
+		);
+	}
+);

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { CartContext } from "./CartContext";
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	const toggleCart = () => {
 		setIsOpen((prev) => !prev);
@@ -16,36 +16,18 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 	};
 
-	const setNavTransform = (isOpen: boolean) => {
-		const nav = document.getElementById("nav");
-		const style = nav?.style;
-		if (nav && style) {
-			style.transition = "all .5s";
-			style.transform = isOpen ? `translateY(${-60}px)` : "translateY(0)";
-		}
-	};
-
-	const setSectionTransform = () => {
-		const page = document.getElementById("main-page");
-		if (page) {
-			isOpen
-				? page.classList.toggle("animationBlur")
-				: page.classList.remove("animationBlur");
-		}
-	};
-
-	const animationCart = () => {
-		setNavTransform(isOpen);
+	useEffect(() => {
 		setBodyOverflow(isOpen ? "hidden" : "auto");
-		setSectionTransform();
-	};
+		return () => {
+			setBodyOverflow("auto");
+		};
+	}, [isOpen]);
 
 	return (
 		<CartContext.Provider
 			value={{
 				isOpen,
-				setIsOpen: toggleCart,
-				animationCart: animationCart
+				setIsOpen: toggleCart
 			}}
 		>
 			{children}

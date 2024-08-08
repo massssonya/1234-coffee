@@ -3,5 +3,5 @@ export const timeoutMiddleware = () => (next) => (action) => {
 		const result = next(action);
 
 		return result;
-	}, 1000);
+	}, 0);
 };

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 import { Card } from "@components/section/card/Card";
-import { ISection } from "@store/food/food.types";
+import { ISection } from "@/store/types";
 
 import "./Section.css";
 

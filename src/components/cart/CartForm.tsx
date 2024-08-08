@@ -1,27 +1,60 @@
-import { useTypedSelector } from "@/hooks/useTypedSelector";
+import { useTypedSelector } from "@hooks/useTypedSelector";
+import { ICartItem } from "@/store/types";
 import { Button } from "@components/ui/button/Button";
-import { totalPrice } from "@/utils";
 import { CartCard } from "./card/CartCard";
+import { useActions } from "@hooks/useActions";
 import "./Cart.css";
+import { useMemo } from "react";
+import { CartEmpty } from "./CartEmpty";
 
-export const CartForm = () => {
-	const cart = useTypedSelector((state) => state.cart);
+export const CartForm = ({
+	setActiveSection,
+	closeCart
+}: {
+	setActiveSection: (section: string) => void;
+	closeCart: () => void;
+}) => {
+	const { items, totalPrice } = useTypedSelector((state) => state.cart);
+	const { addItem, removeItem, removeOneItem } = useActions();
 
-	if (cart.length === 0) return <h1>Ваша корзина пуста</h1>;
+	const handleAddItem = (item: ICartItem) => {
+		addItem(item);
+	};
+
+	const handleRemoveItem = (id: string) => {
+		removeItem(id);
+	};
+
+	const handleRemoveOneItem = (id: string) => {
+		removeOneItem(id);
+	};
+
+	const cards = useMemo(() => {
+		return items.map((item) => (
+			<CartCard
+				key={item.id}
+				data={item}
+				onAdd={() => handleAddItem(item)}
+				onRemoveOne={() => handleRemoveOneItem(item.id)}
+				onRemove={() => handleRemoveItem(item.id)}
+			/>
+		));
+	}, [items]);
+
+	if (items.length === 0)
+		return (
+			<CartEmpty setActiveSection={setActiveSection} closeCart={closeCart} />
+		);
 
 	return (
 		<form className="cart-form">
-			<div className="cart-cards">
-				{cart.map((item) => (
-					<CartCard key={item.id} data={item} />
-				))}
-			</div>
+			<div className="cart-cards">{cards}</div>
 
 			<div className="cart-footer">
 				<div className="cart-footer__total">
 					К оплате{" "}
 					<span className="font-bold dark:text-gray-100">
-						{totalPrice(cart)} руб.
+						{totalPrice} руб.
 					</span>
 				</div>
 

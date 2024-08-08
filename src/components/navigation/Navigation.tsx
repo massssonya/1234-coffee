@@ -1,11 +1,11 @@
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
 
 import { NavigationLink } from "./NavigationLink";
-// import { FavoriteButton } from "../favorite/FavoriteButton";
 import { BurgerMenu } from "../burger/BurgerMenu";
 import { CartButton } from "./CartButton";
 import { AccountButton } from "./AccountButton";
 import "./Navigation.css";
+import { CartContext } from "@/hooks/context/cart/CartContext";
 
 export function Navigation({
 	items,
@@ -17,19 +17,29 @@ export function Navigation({
 	setActiveSection: (s: string) => void;
 }) {
 	const ulRef = useRef<HTMLUListElement>(null);
-
-	useLayoutEffect(() => {
+	const { isOpen } = useContext(CartContext);
+	console.log("Navigation rendered");
+	useEffect(() => {
+		if (!activeSection) return;
 		const li = document.getElementById(`li_${activeSection}`);
-		if (ulRef.current) {
-			ulRef.current.scrollTo({
+		const ul = ulRef.current;
+		if (ul) {
+			ul.scrollTo({
 				behavior: "smooth",
 				left: li?.offsetLeft ?? 0
 			});
 		}
+		return () => {
+			if (ul)
+				ul.scrollTo({
+					behavior: "smooth",
+					left: 0
+				});
+		};
 	}, [activeSection]);
 
 	return (
-		<nav className="navigation" id="nav">
+		<nav className={`navigation ${isOpen ? "hidden" : ""}`} id="nav">
 			<ul ref={ulRef} className="navigation-list">
 				{items.map((item) => {
 					return (

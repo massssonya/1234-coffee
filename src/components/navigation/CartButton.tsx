@@ -10,12 +10,12 @@ import { ShoppingCart } from "lucide-react";
 
 export const CartButton = () => {
 	const { setIsOpen } = useContext(CartContext);
-	const cart = useTypedSelector((state) => state.cart);
+	const { items } = useTypedSelector((state) => state.cart);
 
 	return (
 		<Button onClick={setIsOpen} className="button cart relative">
 			<ShoppingCart color="white" size={20} />
-			{cart.length > 0 && <Indicator>{cart.length}</Indicator>}
+			{items.length > 0 && <Indicator>{items.length}</Indicator>}
 		</Button>
 	);
 };

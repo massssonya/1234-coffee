@@ -4,7 +4,7 @@ import { Button } from "@components/ui/button/Button";
 import { CartCard } from "./card/CartCard";
 import { useActions } from "@hooks/useActions";
 import "./Cart.css";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { CartEmpty } from "./CartEmpty";
 
 export const CartForm = ({
@@ -17,20 +17,29 @@ export const CartForm = ({
 	const { items, totalPrice } = useTypedSelector((state) => state.cart);
 	const { addItem, removeItem, removeOneItem } = useActions();
 
-	const handleAddItem = (item: ICartItem) => {
-		addItem(item);
-	};
+	const handleAddItem = useCallback(
+		(item: ICartItem) => {
+			addItem(item);
+		},
+		[addItem]
+	);
 
-	const handleRemoveItem = (id: string) => {
-		removeItem(id);
-	};
+	const handleRemoveItem = useCallback(
+		(id: string) => {
+			removeItem(id);
+		},
+		[removeItem]
+	);
 
-	const handleRemoveOneItem = (id: string) => {
-		removeOneItem(id);
-	};
+	const handleRemoveOneItem = useCallback(
+		(id: string) => {
+			removeOneItem(id);
+		},
+		[removeOneItem]
+	);
 
 	const cards = useMemo(() => {
-		return items.map((item) => (
+		return items.map((item: ICartItem) => (
 			<CartCard
 				key={item.id}
 				data={item}
@@ -39,7 +48,7 @@ export const CartForm = ({
 				onRemove={() => handleRemoveItem(item.id)}
 			/>
 		));
-	}, [items]);
+	}, [items, handleAddItem, handleRemoveItem, handleRemoveOneItem]);
 
 	if (items.length === 0)
 		return (
@@ -49,7 +58,6 @@ export const CartForm = ({
 	return (
 		<form className="cart-form">
 			<div className="cart-cards">{cards}</div>
-
 			<div className="cart-footer">
 				<div className="cart-footer__total">
 					К оплате{" "}

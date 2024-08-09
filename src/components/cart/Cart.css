@@ -2,11 +2,11 @@
 	/* Cart Form */
 
 	.cart-form {
-		@apply w-full flex flex-col justify-between;
+		@apply w-full flex flex-col justify-between bg-transparent;
 	}
 
 	.cart-cards {
-		@apply relative h-[calc(100vh-12.5rem)] overflow-y-auto no-scrollbar;
+		@apply relative h-[calc(100vh-14rem)] overflow-y-auto no-scrollbar flex flex-col gap-5 py-4;
 	}
 
 	.cart-footer {

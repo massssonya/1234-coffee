@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { CartContext } from "./CartContext";
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const toggleCart = () => {
 		setIsOpen((prev) => !prev);

@@ -7,7 +7,6 @@ import { CartContext } from "@/hooks/context/cart/CartContext";
 export const Cart = memo(
 	({ setActiveSection }: { setActiveSection: (section: string) => void }) => {
 		const { isOpen, setIsOpen } = useContext(CartContext);
-		console.log("Cart rendered");
 
 		const handleClose = useCallback(() => {
 			setIsOpen();

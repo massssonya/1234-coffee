@@ -13,7 +13,7 @@ export const CartEmpty = ({
 		return closeCart();
 	};
 	return (
-		<div className="flex flex-col items-center justify-center h-80 bg-slate-100 dark:bg-slate-800 p-10">
+		<div className="flex flex-col items-center justify-center bg-transparent dark:bg-slate-800 p-10">
 			<h1 className="text-3xl text-slate-800 font-bold mb-4 dark:text-gray-200">
 				Здесь пока пусто
 			</h1>

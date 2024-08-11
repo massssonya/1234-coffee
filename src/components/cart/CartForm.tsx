@@ -16,7 +16,7 @@ export const CartForm = ({
 }) => {
 	const { items, totalPrice } = useTypedSelector((state) => state.cart);
 	const { addItem, removeItem, removeOneItem } = useActions();
-
+	console.log(totalPrice);
 	const handleAddItem = useCallback(
 		(item: ICartItem) => {
 			addItem(item);
@@ -68,7 +68,7 @@ export const CartForm = ({
 
 				<Button
 					type="submit"
-					className="button submit w-full text-xl"
+					className="button submit w-[clamp(30%, 1vw, 100%)]  text-xl"
 					onClick={() => {}}
 				>
 					Перейти к оплате

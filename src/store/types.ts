@@ -1,11 +1,15 @@
+type TSectionId = string;
+
 export interface ISection {
-	id: string;
+	id: TSectionId;
 	title: string;
 	items?: ISectionItem[];
 }
 
+type TSectionItemId = string;
+
 export interface ISectionItem {
-	id: string;
+	id: TSectionItemId;
 	name: string;
 	price: number;
 	img?: string;
@@ -14,11 +18,13 @@ export interface ISectionItem {
 	properties?: IProperties;
 }
 
+type TProperty = string | number;
+
 export interface IProperties {
-	proteins?: number | string;
-	fats?: number | string;
-	carbohydrates?: number | string;
-	calories?: number | string;
+	proteins?: TProperty;
+	fats?: TProperty;
+	carbohydrates?: TProperty;
+	calories?: TProperty;
 }
 
 export interface ICartItem extends ISectionItem {

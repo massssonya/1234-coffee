@@ -9,17 +9,20 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 		setIsOpen((prev) => !prev);
 	};
 
-	const setBodyOverflow = (overflow: string) => {
+	const setBodyOverflow = (isOpen: boolean) => {
+		const overflow = isOpen ? "hidden" : "auto";
+		// const position = isOpen ? "fixed" : "relative";
 		const body = document.querySelector("body");
 		if (body) {
 			body.style.overflow = overflow;
+			// body.style.position = position;
 		}
 	};
 
 	useEffect(() => {
-		setBodyOverflow(isOpen ? "hidden" : "auto");
+		setBodyOverflow(isOpen);
 		return () => {
-			setBodyOverflow("auto");
+			setBodyOverflow(false);
 		};
 	}, [isOpen]);
 

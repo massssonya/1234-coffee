@@ -36,3 +36,11 @@
 .navigation-list__btns {
 	@apply flex md:gap-2 md:ml-4 ml-0 md:px-4 px-1 border-l border-black dark:border-white;
 }
+
+.cart-btn {
+	@apply fixed bottom-5 right-5 z-50 py-2 px-3 rounded-xl inline-flex items-center gap-2 transition-all duration-300 ease-in-out;
+
+	&.close {
+		@apply translate-y-20;
+	}
+}

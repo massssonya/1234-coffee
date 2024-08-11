@@ -11,7 +11,6 @@
 		transparent 100%
 	);
 	--bg-color: white;
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,17 +29,9 @@ body {
 	padding: 0;
 }
 
-
-
 @layer base {
-
-
 	hr {
 		@apply w-full h-1 my-2 bg-black rounded dark:bg-white;
-	}
-
-	footer {
-		@apply bg-white border-t dark:bg-gray-800;
 	}
 
 	button {
@@ -60,23 +51,9 @@ body {
 }
 
 @layer components {
-
-
-
-
-
-
-
-
-
 	/*  Burger  */
 
 	.burger {
 		@apply block md:hidden;
 	}
-
-
-
-
-
 }
